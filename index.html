@@ -8,351 +8,130 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #edf0f4; min-height: 100vh; color: #374151; }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #edf0f4;
-      min-height: 100vh;
-      color: #374151;
-    }
+    /* HEADER */
+    .hdr { background:#fff; padding:13px 32px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #ebebeb; position:sticky; top:0; z-index:200; }
+    .logo-wrap { position:relative; display:inline-flex; align-items:flex-end; height:52px; }
+    .logo-b { font-family:Georgia,serif; font-size:46px; font-weight:900; color:#0d1b5e; line-height:1; }
+    .logo-leaves { position:absolute; top:0; right:-14px; display:flex; gap:2px; }
 
-    /* ─── HEADER ─── */
-    .hdr {
-      background: #fff;
-      padding: 13px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #ebebeb;
-      position: sticky;
-      top: 0;
-      z-index: 200;
-    }
+    /* NAV */
+    .nav-steps { display:flex; align-items:center; gap:38px; }
+    .nav-step { font-size:13.5px; font-weight:500; color:#b0b9c6; display:flex; align-items:center; gap:4px; white-space:nowrap; }
+    .nav-step.active { color:#0d1b5e; font-weight:700; }
+    .nav-step .chk { color:#22c55e; font-size:12px; font-weight:700; }
+    .adv-btn { font-family:inherit; font-size:13.5px; font-weight:700; color:#0d1b5e; background:none; border:none; cursor:pointer; }
 
-    /* ─── LOGO ─── */
-    .logo-wrap {
-      position: relative;
-      display: inline-flex;
-      align-items: flex-end;
-      height: 52px;
-    }
-    .logo-b {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 46px;
-      font-weight: 900;
-      color: #0d1b5e;
-      line-height: 1;
-    }
-    .logo-leaves {
-      position: absolute;
-      top: 0;
-      right: -14px;
-      display: flex;
-      gap: 2px;
-    }
+    /* PAGE */
+    .page { max-width:680px; margin:0 auto; padding:72px 24px 100px; }
+    .q-title { font-family:'Playfair Display',Georgia,serif; font-size:42px; font-weight:800; color:#0d1b5e; text-align:center; line-height:1.15; margin-bottom:12px; }
+    .q-sub { font-size:15px; color:#9ca3af; text-align:center; margin-bottom:38px; }
 
-    /* ─── NAV STEPS ─── */
-    .nav-steps {
-      display: flex;
-      align-items: center;
-      gap: 38px;
-    }
-    .nav-step {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: #b0b9c6;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-    }
-    .nav-step.active  { color: #0d1b5e; font-weight: 700; }
-    .nav-step .chk    { color: #22c55e; font-size: 12px; font-weight: 700; }
+    /* OPTION BUTTONS */
+    .opts { display:flex; flex-direction:column; gap:14px; max-width:520px; margin:0 auto; }
+    .opt { width:100%; padding:19px 28px; background:#fff; border:1.5px solid #d4d9e0; border-radius:12px; font-family:inherit; font-size:16.5px; font-weight:500; color:#0d1b5e; cursor:pointer; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; transition:border-color .14s,background .14s; }
+    .opt:hover { border-color:#10b981; background:#f0fdf7; }
+    .opt.sel { border-color:#10b981; background:#d1fae5; }
+    .opt .ico-wrap { display:flex; color:#0d1b5e; }
 
-    /* ─── ADV BUTTON ─── */
-    .adv-btn {
-      font-family: inherit;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #0d1b5e;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
+    /* FORM FIELDS */
+    .fw { max-width:430px; margin:0 auto; }
+    .lbl { display:block; font-size:12.5px; font-weight:600; color:#2563eb; margin-bottom:7px; letter-spacing:.01em; }
+    .frow { position:relative; margin-bottom:14px; }
+    .cpfx { position:absolute; left:16px; top:50%; transform:translateY(-50%); font-size:17px; font-weight:600; color:#374151; pointer-events:none; }
+    .inp { width:100%; padding:17px 16px; font-family:inherit; font-size:17px; color:#374151; background:#fff; border:1.5px solid #d4d9e0; border-radius:10px; outline:none; transition:border-color .15s; }
+    .inp.pc { padding-left:32px; }
+    .inp.pe { padding-right:50px; }
+    .inp.tc { text-align:center; }
+    .inp:focus { border-color:#10b981; }
+    .inp::placeholder { color:#c0c7d0; }
 
-    /* ─── PAGE ─── */
-    .page {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 72px 24px 100px;
-    }
+    /* SUBMIT BUTTON */
+    .sbtn { width:100%; padding:17px; background:#a7f3d0; color:#0d1b5e; font-family:inherit; font-size:16.5px; font-weight:600; border:none; border-radius:10px; cursor:pointer; transition:background .15s; margin-top:14px; }
+    .sbtn:hover:not([disabled]) { background:#6ee7b7; }
+    .sbtn[disabled] { background:#e5e7eb; color:#9ca3af; cursor:not-allowed; }
 
-    /* ─── HEADINGS ─── */
-    .q-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 42px;
-      font-weight: 800;
-      color: #0d1b5e;
-      text-align: center;
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-    .q-sub {
-      font-size: 15px;
-      color: #9ca3af;
-      text-align: center;
-      margin-bottom: 38px;
-    }
+    /* DOB */
+    .dob-grid { display:grid; grid-template-columns:1fr 1fr 1.45fr; gap:12px; margin-bottom:14px; }
 
-    /* ─── OPTION BUTTONS ─── */
-    .opts {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-    .opt {
-      width: 100%;
-      padding: 19px 28px;
-      background: #fff;
-      border: 1.5px solid #d4d9e0;
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 16.5px;
-      font-weight: 500;
-      color: #0d1b5e;
-      cursor: pointer;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: border-color .14s, background .14s;
-    }
-    .opt:hover       { border-color: #10b981; background: #f0fdf7; }
-    .opt.sel         { border-color: #10b981; background: #d1fae5; }
-    .opt .ico-wrap   { display: flex; color: #0d1b5e; }
+    /* YES/NO */
+    .yn { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
 
-    /* ─── FIELD WRAPPER ─── */
-    .fw { max-width: 430px; margin: 0 auto; }
-    .lbl {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #2563eb;
-      margin-bottom: 7px;
-      letter-spacing: .01em;
-    }
-    .frow { position: relative; margin-bottom: 14px; }
-    .cpfx {
-      position: absolute;
-      left: 16px; top: 50%;
-      transform: translateY(-50%);
-      font-size: 17px;
-      font-weight: 600;
-      color: #374151;
-      pointer-events: none;
-    }
+    /* CHECKBOX */
+    .cb { display:flex; align-items:center; gap:10px; font-size:13.5px; color:#374151; cursor:pointer; margin:10px 0 4px; }
+    .cb input { width:16px; height:16px; accent-color:#10b981; flex-shrink:0; }
 
-    /* ─── INPUT ─── */
-    .inp {
-      width: 100%;
-      padding: 17px 16px;
-      font-family: inherit;
-      font-size: 17px;
-      color: #374151;
-      background: #fff;
-      border: 1.5px solid #d4d9e0;
-      border-radius: 10px;
-      outline: none;
-      transition: border-color .15s;
-    }
-    .inp.pc  { padding-left: 32px; }
-    .inp.pe  { padding-right: 50px; }
-    .inp.tc  { text-align: center; }
-    .inp:focus { border-color: #10b981; }
-    .inp::placeholder { color: #c0c7d0; }
+    /* EYE TOGGLE */
+    .eye { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#9ca3af; display:flex; align-items:center; padding:2px; }
 
-    /* ─── SUBMIT BUTTON ─── */
-    .sbtn {
-      width: 100%;
-      padding: 17px;
-      background: #a7f3d0;
-      color: #0d1b5e;
-      font-family: inherit;
-      font-size: 16.5px;
-      font-weight: 600;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background .15s;
-      margin-top: 14px;
-    }
-    .sbtn:hover:not([disabled]) { background: #6ee7b7; }
-    .sbtn[disabled] { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; }
+    /* MISC */
+    .cf { font-size:13px; color:#6b7280; margin-top:12px; }
+    .cf a { color:#2563eb; text-decoration:none; }
+    .note { font-size:11.5px; color:#6b7280; margin-top:12px; line-height:1.65; }
+    .note a { color:#2563eb; }
 
-    /* ─── DOB GRID ─── */
-    .dob-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1.45fr;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
+    /* TRUST BADGES */
+    .badges { display:flex; align-items:center; gap:22px; margin-top:30px; max-width:430px; margin-left:auto; margin-right:auto; }
+    .bbb-box { border:1.5px solid #2563eb; border-radius:7px; padding:7px 11px; display:flex; flex-direction:column; align-items:center; min-width:78px; }
+    .bbb-hdr { font-size:9px; color:#2563eb; font-weight:700; }
+    .bbb-logo { font-size:18px; font-weight:900; color:#2563eb; }
+    .bbb-sub { font-size:8px; color:#2563eb; }
+    .tp-wrap { display:flex; flex-direction:column; gap:3px; }
+    .tp-exc { font-size:14px; font-weight:700; color:#0d1b5e; }
+    .tp-stars { display:flex; gap:3px; }
+    .tp-star { width:22px; height:22px; background:#00b67a; border-radius:2px; display:flex; align-items:center; justify-content:center; }
+    .tp-score { font-size:12px; color:#374151; display:flex; align-items:center; gap:5px; }
+    .tp-dot { width:13px; height:13px; background:#00b67a; border-radius:50%; display:inline-block; }
 
-    /* ─── YES / NO ─── */
-    .yn { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
+    /* DISCLAIMER */
+    .disc { font-size:12px; color:#9ca3af; text-align:center; margin-top:12px; max-width:430px; margin-left:auto; margin-right:auto; }
 
-    /* ─── CHECKBOX ─── */
-    .cb {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13.5px;
-      color: #374151;
-      cursor: pointer;
-      margin: 10px 0 4px;
-    }
-    .cb input { width: 16px; height: 16px; accent-color: #10b981; flex-shrink: 0; }
+    /* LEGAL */
+    .legal { max-width:430px; margin:22px auto 0; font-size:11.5px; color:#6b7280; line-height:1.75; }
+    .legal p { margin-bottom:6px; }
+    .legal ul { margin-left:14px; }
+    .legal li { margin-bottom:6px; }
+    .legal a { color:#2563eb; }
 
-    /* ─── EYE TOGGLE ─── */
-    .eye {
-      position: absolute;
-      right: 14px; top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #9ca3af;
-      display: flex;
-      align-items: center;
-      padding: 2px;
-    }
+    /* MODAL */
+    .ovl { display:none; position:fixed; inset:0; background:rgba(0,0,0,.52); z-index:500; align-items:center; justify-content:center; }
+    .ovl.on { display:flex; }
+    .mdl { background:#fff; border-radius:14px; padding:36px 32px; max-width:600px; width:94%; max-height:84vh; overflow-y:auto; position:relative; }
+    .mdl h2 { font-family:'Playfair Display',Georgia,serif; font-size:22px; color:#0d1b5e; margin-bottom:14px; }
+    .mdl p,.mdl li { font-size:13px; color:#555; line-height:1.7; margin-bottom:10px; }
+    .mdl-cls { position:absolute; top:12px; right:16px; font-size:26px; color:#aaa; background:none; border:none; cursor:pointer; }
 
-    /* ─── MISC TEXT ─── */
-    .cf { font-size: 13px; color: #6b7280; margin-top: 12px; }
-    .cf a { color: #2563eb; text-decoration: none; }
-    .cf a:hover { text-decoration: underline; }
-    .note { font-size: 12px; color: #6b7280; margin-top: 12px; }
+    /* SUCCESS */
+    .success-page { text-align:center; padding:60px 20px; }
 
-    /* ─── TRUST BADGES ─── */
-    .badges { display: flex; align-items: center; gap: 22px; margin-top: 30px; }
-    .bbb-box {
-      border: 1.5px solid #2563eb;
-      border-radius: 7px;
-      padding: 7px 11px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 78px;
+    /* RESPONSIVE */
+    @media(max-width:640px){
+      .hdr{padding:12px 16px;} .nav-steps{gap:10px;} .nav-step{font-size:11px;}
+      .q-title{font-size:28px;} .page{padding:44px 16px 70px;} .dob-grid{gap:8px;}
     }
-
-    /* ─── DISCLAIMER ─── */
-    .disc {
-      font-size: 12px;
-      color: #9ca3af;
-      text-align: center;
-      margin-top: 12px;
-      max-width: 430px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ─── LEGAL TEXT ─── */
-    .legal {
-      max-width: 430px;
-      margin: 22px auto 0;
-      font-size: 11.5px;
-      color: #6b7280;
-      line-height: 1.75;
-    }
-    .legal ul { margin-left: 14px; }
-    .legal li { margin-bottom: 6px; }
-    .legal a  { color: #2563eb; }
-    .legal a:hover { text-decoration: underline; }
-
-    /* ─── MODAL ─── */
-    .ovl {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.52);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-    }
-    .ovl.on { display: flex; }
-    .mdl {
-      background: #fff;
-      border-radius: 14px;
-      padding: 36px 32px;
-      max-width: 600px;
-      width: 94%;
-      max-height: 84vh;
-      overflow-y: auto;
-      position: relative;
-    }
-    .mdl h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 22px;
-      color: #0d1b5e;
-      margin-bottom: 14px;
-    }
-    .mdl p, .mdl li { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 10px; }
-    .mdl-cls {
-      position: absolute;
-      top: 12px; right: 16px;
-      font-size: 26px; color: #aaa;
-      background: none; border: none; cursor: pointer;
-    }
-
-    /* ─── SUCCESS ─── */
-    .success-page { text-align: center; padding: 60px 20px; }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 640px) {
-      .hdr { padding: 12px 16px; }
-      .nav-steps { gap: 10px; }
-      .nav-step { font-size: 11px; }
-      .q-title { font-size: 28px; }
-      .page { padding: 44px 16px 70px; }
-      .dob-grid { gap: 8px; }
-    }
-    @media (max-width: 400px) {
-      .nav-step .step-name { display: none; }
-    }
+    @media(max-width:400px){ .nav-step .step-name{display:none;} }
   </style>
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
+<!-- HEADER -->
 <header class="hdr">
-
-  <!-- Logo -->
   <div class="logo-wrap">
     <span class="logo-b">b</span>
     <div class="logo-leaves">
-      <svg width="10" height="15" viewBox="0 0 10 15">
-        <path d="M5 15 Q8 10 9.5 4.5 Q6 3.5 3.5 6 Q1 8.5 5 15Z" fill="#0d9488"/>
-      </svg>
-      <svg width="9" height="14" viewBox="0 0 9 14">
-        <path d="M4.5 14 Q7 9.5 8.5 4 Q5.5 3 3 5.5 Q0.5 8 4.5 14Z" fill="#4ade80"/>
-      </svg>
+      <svg width="10" height="15" viewBox="0 0 10 15"><path d="M5 15 Q8 10 9.5 4.5 Q6 3.5 3.5 6 Q1 8.5 5 15Z" fill="#0d9488"/></svg>
+      <svg width="9" height="14" viewBox="0 0 9 14"><path d="M4.5 14 Q7 9.5 8.5 4 Q5.5 3 3 5.5 Q0.5 8 4.5 14Z" fill="#4ade80"/></svg>
     </div>
   </div>
-
-  <!-- Step Nav -->
   <nav class="nav-steps" id="navEl"></nav>
-
-  <!-- Advertiser Disclosure -->
   <button class="adv-btn" onclick="openM()">Advertiser Disclosure</button>
 </header>
 
-<!-- ═══════════ MAIN ═══════════ -->
+<!-- MAIN -->
 <main class="page" id="pageEl"></main>
 
-<!-- ═══════════ MODAL ═══════════ -->
+<!-- MODAL -->
 <div class="ovl" id="ovlEl" onclick="ovlClick(event)">
   <div class="mdl">
     <button class="mdl-cls" onclick="closeM()">×</button>
@@ -365,279 +144,210 @@
 </div>
 
 <script>
-/* ══════════════════════════════════════
-   STATE
-══════════════════════════════════════ */
-const FD = {};   // form data store
-let   CUR = 0;   // current step index
+/* ── STATE ── */
+const FD = {};
+let CUR = 0;
 
-/* ══════════════════════════════════════
-   SECTION LABELS
-══════════════════════════════════════ */
+/* ── SECTIONS ── */
 const SECS = ['Basic Info','Your Business','Your Info','Offers & Final Details'];
 
-/* ══════════════════════════════════════
-   ICONS  (funding purpose step)
-══════════════════════════════════════ */
+/* ── ICONS ── */
 const ICO = {
-  cashflow: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="12" y1="1" x2="12" y2="23"/>
-    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-  </svg>`,
-  truck: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="1" y="3" width="15" height="13" rx="1"/>
-    <path d="M16 8h4l3 3v5h-7V8z"/>
-    <circle cx="5.5" cy="18.5" r="2.5"/>
-    <circle cx="18.5" cy="18.5" r="2.5"/>
-  </svg>`,
-  expand: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-  </svg>`,
-  box: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-    <line x1="12" y1="22.08" x2="12" y2="12"/>
-  </svg>`,
-  payroll: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="5" width="20" height="14" rx="2"/>
-    <line x1="2" y1="10" x2="22" y2="10"/>
-    <path d="M12 15v-1m0 0H10m2 0h2"/>
-  </svg>`,
-  briefcase: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="7" width="20" height="14" rx="2"/>
-    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-    <line x1="12" y1="12" x2="12" y2="16"/>
-    <line x1="10" y1="14" x2="14" y2="14"/>
-  </svg>`
+  cashflow:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+  truck:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+  expand:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`,
+  box:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+  payroll:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M12 15v-1m0 0H10m2 0h2"/></svg>`,
+  briefcase:`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`
 };
 
-/* ══════════════════════════════════════
-   LEAF SVG (active nav indicator)
-══════════════════════════════════════ */
-const LEAF = `<svg width="13" height="14" viewBox="0 0 13 14" style="margin-left:3px">
-  <path d="M6.5 13Q9.5 9 12 4.5Q8.5 3.5 6 6Q3.5 8.5 6.5 13Z" fill="#10b981"/>
-  <path d="M6.5 13Q3.5 9 1 4.5Q4.5 3.5 7 6Q9.5 8.5 6.5 13Z" fill="#4ade80"/>
-</svg>`;
+const LEAF = `<svg width="13" height="14" viewBox="0 0 13 14" style="margin-left:3px"><path d="M6.5 13Q9.5 9 12 4.5Q8.5 3.5 6 6Q3.5 8.5 6.5 13Z" fill="#10b981"/><path d="M6.5 13Q3.5 9 1 4.5Q4.5 3.5 7 6Q9.5 8.5 6.5 13Z" fill="#4ade80"/></svg>`;
 
-/* ══════════════════════════════════════
-   STEP DEFINITIONS  (17 total)
-══════════════════════════════════════ */
+/* ── STEPS ── */
 const STEPS = [
+  // BASIC INFO
+  {sec:0,title:'When did you start your business?',type:'btns',key:'bizAge',
+   opts:['0 - 5 Months','6 - 12 Months','1 - 2 Years','2 - 5 Years','5 - 10 Years','10+ Years']},
 
-  /* ── BASIC INFO ───────────────────── */
-  { sec:0, title:'When did you start your business?',
-    type:'btns', key:'bizAge',
-    opts:['0 - 5 Months','6 - 12 Months','1 - 2 Years','2 - 5 Years','5 - 10 Years','10+ Years'] },
+  {sec:0,title:'What type of business do you own?',type:'btns',key:'bizType',
+   opts:['Limited Liability Company | LLC','Sole Proprietorship','Partnership','C Corporation','S Corporation']},
 
-  { sec:0, title:'What type of business do you own?',
-    type:'btns', key:'bizType',
-    opts:['Limited Liability Company | LLC','Sole Proprietorship','Partnership','C Corporation','S Corporation'] },
+  {sec:0,title:'How much do you need?',
+   sub:'If you are unsure, 10% of annual revenue is a good place to start',
+   type:'btns',key:'loanAmt',
+   opts:['$10,000 - $24,999','$25,000 - $49,999','$50,000 - $74,999','$75,000 - $99,999',
+         '$100,000 - $249,999','$250,000 - $499,999','$500,000 - $749,000','$750,000+']},
 
-  { sec:0, title:'How much do you need?',
-    sub:'If you are unsure, 10% of annual revenue is a good place to start',
-    type:'btns', key:'loanAmt',
-    opts:['$10,000 - $24,999','$25,000 - $49,999','$50,000 - $74,999','$75,000 - $99,999',
-          '$100,000 - $249,999','$250,000 - $499,999','$500,000 - $749,000','$750,000+'] },
+  {sec:0,title:'What are you seeking funding for?',type:'iconbtns',key:'fundPurp',
+   opts:[
+     {lbl:'Working Capital / Cash Flow',ico:'cashflow'},
+     {lbl:'Equipment Purchase',ico:'truck'},
+     {lbl:'Expansion',ico:'expand'},
+     {lbl:'Inventory',ico:'box'},
+     {lbl:'Payroll',ico:'payroll'},
+     {lbl:'Other',ico:'briefcase'}
+   ]},
 
-  { sec:0, title:'What are you seeking funding for?',
-    type:'iconbtns', key:'fundPurp',
-    opts:[
-      { lbl:'Working Capital / Cash Flow', ico:'cashflow' },
-      { lbl:'Equipment Purchase',           ico:'truck'    },
-      { lbl:'Expansion',                    ico:'expand'   },
-      { lbl:'Inventory',                    ico:'box'      },
-      { lbl:'Payroll',                      ico:'payroll'  },
-      { lbl:'Other',                        ico:'briefcase'}
-    ]},
+  {sec:0,title:"What's your annual revenue?",
+   sub:"If you aren't sure of the exact number, your best guess is fine!",
+   type:'curr',key:'annRev',lbl:'Annual Revenue',ph:'500,000'},
 
-  { sec:0, title:"What's your annual revenue?",
-    sub:"If you aren't sure of the exact number, your best guess is fine!",
-    type:'curr', key:'annRev', lbl:'Annual Revenue', ph:'500,000' },
+  {sec:0,title:'What is your personal credit score?',type:'btns',key:'credit',
+   opts:['Excellent (720+)','Good (680 - 719)','Fair (640 - 679)','Poor (639 or less)']},
 
-  { sec:0, title:'What is your personal credit score?',
-    type:'btns', key:'credit',
-    opts:['Excellent (720+)','Good (680 - 719)','Fair (640 - 679)','Poor (639 or less)'] },
+  // YOUR BUSINESS
+  {sec:1,title:'What industry are you in?',type:'btns',key:'industry',
+   opts:['Construction','Transportation and Warehousing','Accommodation and Food Services','Retail Trade','Other']},
 
-  /* ── YOUR BUSINESS ────────────────── */
-  { sec:1, title:'What industry are you in?',
-    type:'btns', key:'industry',
-    opts:['Construction','Transportation and Warehousing','Accommodation and Food Services','Retail Trade','Other'] },
+  {sec:1,title:"What's the business zip code?",type:'txt',key:'zip',lbl:'Zip Code',ph:'29401',ml:5},
 
-  { sec:1, title:"What's the business zip code?",
-    type:'txt', key:'zip', lbl:'Zip Code', ph:'29401', ml:5 },
+  {sec:1,title:'What is your business name?',type:'txt',key:'bizName',lbl:'Business Name',ph:'Acme, Inc'},
 
-  { sec:1, title:'What is your business name?',
-    type:'txt', key:'bizName', lbl:'Business Name', ph:'Acme, Inc' },
+  // YOUR INFO
+  {sec:2,title:'What is your name?',type:'name',
+   keys:['firstName','lastName'],lbls:['First Name','Last Name'],phs:['First Name','Last Name'],badges:true},
 
-  /* ── YOUR INFO ────────────────────── */
-  { sec:2, title:'What is your name?',
-    type:'name', keys:['firstName','lastName'],
-    lbls:['First Name','Last Name'], phs:['First Name','Last Name'], badges:true },
+  {sec:2,title:"What's your email address?",type:'txt',key:'email',lbl:'Email Address',
+   ph:'email@company.com',itype:'email',
+   disc:'By providing your email address, we may contact you regarding your request.',badges:true},
 
-  { sec:2, title:"What's your email address?",
-    type:'txt', key:'email', lbl:'Email Address', ph:'email@company.com',
-    itype:'email',
-    disc:'By providing your email address, we may contact you regarding your request.',
-    badges:true },
+  {sec:2,title:'What is the best phone number to reach you?',type:'txt',key:'phone',
+   lbl:'Phone Number',ph:'(111) 222-3333',itype:'tel',legal:true,badges:true},
 
-  { sec:2, title:'What is the best phone number to reach you?',
-    type:'txt', key:'phone', lbl:'Phone Number', ph:'(111) 222-3333',
-    itype:'tel', legal:true, badges:true },
+  // OFFERS & FINAL
+  {sec:3,title:"What's your ownership percentage?",type:'own',key:'ownerPct',
+   lbl:'Ownership Percentage',ph:'100'},
 
-  /* ── OFFERS & FINAL ───────────────── */
-  { sec:3, title:"What's your ownership percentage?",
-    type:'own', key:'ownerPct', lbl:'Ownership Percentage', ph:'100' },
+  {sec:3,title:'What is your business address?',type:'addr',key:'bizAddr',lbl:'Address',ph:'123 Main St'},
 
-  { sec:3, title:'What is your business address?',
-    type:'addr', key:'bizAddr', lbl:'Address', ph:'123 Main St' },
+  {sec:3,title:"What's your date of birth?",type:'dob',keys:['dobM','dobD','dobY']},
 
-  { sec:3, title:"What's your date of birth?",
-    type:'dob', keys:['dobM','dobD','dobY'] },
+  {sec:3,title:'What is your SSN?',sub:'This will not impact your credit score',
+   type:'ssn',key:'ssn',lbl:'SSN',ph:'012-34-5678'},
 
-  { sec:3, title:'What is your SSN?',
-    sub:'This will not impact your credit score',
-    type:'ssn', key:'ssn', lbl:'SSN', ph:'012-34-5678' },
-
-  { sec:3, title:"What's your business tax ID (EIN)?",
-    type:'txt', key:'ein', lbl:'EIN', ph:'00-0000000',
-    note:"If you're a sole proprietor and your SSN is your TaxID, please select the next button." }
+  {sec:3,title:"What's your business tax ID (EIN)?",type:'txt',key:'ein',lbl:'EIN',ph:'00-0000000',
+   note:"If you're a sole proprietor and your SSN is your TaxID, please select the next button."}
 ];
 
-/* ══════════════════════════════════════
-   RENDER NAV
-══════════════════════════════════════ */
-function renderNav() {
-  const sec = STEPS[CUR].sec;
-  document.getElementById('navEl').innerHTML = SECS.map((name, i) => {
-    let cls='nav-step', pre='', suf='';
-    if      (i < sec)   { cls+=' completed'; pre=`<span class="chk">✓ </span>`; }
-    else if (i === sec) { cls+=' active';    suf=LEAF; }
+/* ── ESCAPE ── */
+function ex(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ── RENDER NAV ── */
+function renderNav(){
+  const sec=STEPS[CUR].sec;
+  document.getElementById('navEl').innerHTML=SECS.map((name,i)=>{
+    let cls='nav-step',pre='',suf='';
+    if(i<sec){cls+=' completed';pre=`<span class="chk">✓ </span>`;}
+    else if(i===sec){cls+=' active';suf=LEAF;}
     return `<div class="${cls}">${pre}<span class="step-name">${name}</span>${suf}</div>`;
   }).join('');
 }
 
-/* ══════════════════════════════════════
-   RENDER STEP
-══════════════════════════════════════ */
-function renderStep() {
-  const s  = STEPS[CUR];
-  let   h  = `<h1 class="q-title">${s.title}</h1>`;
-  if (s.sub) h += `<p class="q-sub">${s.sub}</p>`;
-
-  switch (s.type) {
-    case 'btns':     h += bBtns(s);  break;
-    case 'iconbtns': h += bIco(s);   break;
-    case 'curr':     h += bCurr(s);  break;
-    case 'txt':      h += bTxt(s);   break;
-    case 'name':     h += bName(s);  break;
-    case 'own':      h += bOwn(s);   break;
-    case 'addr':     h += bAddr(s);  break;
-    case 'dob':      h += bDOB(s);   break;
-    case 'ssn':      h += bSSN(s);   break;
+/* ── RENDER STEP ── */
+function renderStep(){
+  const s=STEPS[CUR];
+  let h=`<h1 class="q-title">${s.title}</h1>`;
+  if(s.sub) h+=`<p class="q-sub">${s.sub}</p>`;
+  switch(s.type){
+    case'btns':     h+=bBtns(s);    break;
+    case'iconbtns': h+=bIco(s);     break;
+    case'curr':     h+=bCurr(s);    break;
+    case'txt':      h+=bTxt(s);     break;
+    case'name':     h+=bName(s);    break;
+    case'own':      h+=bOwn(s);     break;
+    case'addr':     h+=bAddr(s);    break;
+    case'dob':      h+=bDOB(s);     break;
+    case'ssn':      h+=bSSN(s);     break;
   }
-
-  if (s.badges) h += bBadges();
-  if (s.disc)   h += `<p class="disc">${s.disc}</p>`;
-  if (s.legal)  h += bLegal();
-
-  document.getElementById('pageEl').innerHTML = h;
+  if(s.badges) h+=bBadges();
+  if(s.disc)   h+=`<p class="disc">${s.disc}</p>`;
+  if(s.legal)  h+=bLegal();
+  if(s.note)   h+=`<p class="note" style="max-width:430px;margin:12px auto 0">${s.note}</p>`;
+  document.getElementById('pageEl').innerHTML=h;
 }
 
-/* ══════════════════════════════════════
-   BUILD BLOCKS
-══════════════════════════════════════ */
-function bBtns(s) {
-  return `<div class="opts">${s.opts.map(o => {
-    const sel = FD[s.key] === o ? ' sel' : '';
-    return `<button class="opt${sel}" data-k="${s.key}" data-v="${ex(o)}" onclick="pickOpt(this,true)">${o}</button>`;
+/* ── BUILDERS ── */
+function bBtns(s){
+  return`<div class="opts">${s.opts.map(o=>{
+    const sel=FD[s.key]===o?' sel':'';
+    return`<button class="opt${sel}" data-k="${s.key}" data-v="${ex(o)}" onclick="pickOpt(this,true)">${o}</button>`;
   }).join('')}</div>`;
 }
 
-function bIco(s) {
-  return `<div class="opts">${s.opts.map(o => {
-    const sel = FD[s.key] === o.lbl ? ' sel' : '';
-    return `<button class="opt${sel}" data-k="${s.key}" data-v="${ex(o.lbl)}" onclick="pickOpt(this,true)">
-      <span class="ico-wrap">${ICO[o.ico]||''}</span>
-      <span>${o.lbl}</span>
+function bIco(s){
+  return`<div class="opts">${s.opts.map(o=>{
+    const sel=FD[s.key]===o.lbl?' sel':'';
+    return`<button class="opt${sel}" data-k="${s.key}" data-v="${ex(o.lbl)}" onclick="pickOpt(this,true)">
+      <span class="ico-wrap">${ICO[o.ico]||''}</span><span>${o.lbl}</span>
     </button>`;
   }).join('')}</div>`;
 }
 
-function bCurr(s) {
-  const v = FD[s.key]||'';
-  return `<div class="fw">
+function bCurr(s){
+  const v=FD[s.key]||'';
+  return`<div class="fw">
     <label class="lbl">${s.lbl}</label>
     <div class="frow">
       <span class="cpfx">$</span>
-      <input id="fi" type="text" class="inp pc" placeholder="${s.ph}" value="${v}"
+      <input id="fi" type="text" class="inp pc" placeholder="${s.ph}" value="${ex(v)}"
              oninput="FD['${s.key}']=this.value.replace(/[^0-9,.]/g,'');sb()">
     </div>
     <button class="sbtn" id="nBtn" ${v?'':'disabled'} onclick="go()">Next</button>
   </div>`;
 }
 
-function bTxt(s) {
-  const v  = FD[s.key]||'';
-  const it = s.itype||'text';
-  const ml = s.ml ? `maxlength="${s.ml}"` : '';
-  return `<div class="fw">
+function bTxt(s){
+  const v=FD[s.key]||'',it=s.itype||'text',ml=s.ml?`maxlength="${s.ml}"`:'';
+  return`<div class="fw">
     <label class="lbl">${s.lbl}</label>
     <div class="frow">
-      <input id="fi" type="${it}" class="inp" placeholder="${s.ph}" value="${v}" ${ml}
+      <input id="fi" type="${it}" class="inp" placeholder="${s.ph}" value="${ex(v)}" ${ml}
              oninput="FD['${s.key}']=this.value;sb()">
     </div>
-    ${s.note ? `<p class="note">${s.note}</p>` : ''}
     <button class="sbtn" id="nBtn" ${v?'':'disabled'} onclick="go()">Next</button>
   </div>`;
 }
 
-function bName(s) {
-  const v0  = FD[s.keys[0]]||'';
-  const v1  = FD[s.keys[1]]||'';
-  const dis = v0 && v1 ? '' : 'disabled';
-  return `<div class="fw">
+function bName(s){
+  const v0=FD[s.keys[0]]||'',v1=FD[s.keys[1]]||'';
+  return`<div class="fw">
     <label class="lbl">${s.lbls[0]}</label>
     <div class="frow" style="margin-bottom:14px">
-      <input id="fn0" type="text" class="inp" placeholder="${s.phs[0]}" value="${v0}"
+      <input id="fn0" type="text" class="inp" placeholder="${s.phs[0]}" value="${ex(v0)}"
              oninput="FD['${s.keys[0]}']=this.value;sb()">
     </div>
     <label class="lbl">${s.lbls[1]}</label>
     <div class="frow">
-      <input id="fn1" type="text" class="inp" placeholder="${s.phs[1]}" value="${v1}"
+      <input id="fn1" type="text" class="inp" placeholder="${s.phs[1]}" value="${ex(v1)}"
              oninput="FD['${s.keys[1]}']=this.value;sb()">
     </div>
-    <button class="sbtn" id="nBtn" ${dis} onclick="go()">Next</button>
+    <button class="sbtn" id="nBtn" ${v0&&v1?'':'disabled'} onclick="go()">Next</button>
   </div>`;
 }
 
-function bOwn(s) {
-  const v   = FD[s.key]    ||'';
-  const iao = FD['isOwner']||'';
-  const dis = v && iao ? '' : 'disabled';
-  return `<div class="fw">
+function bOwn(s){
+  const v=FD[s.key]||'',iao=FD['isOwner']||'';
+  return`<div class="fw">
     <label class="lbl">${s.lbl}</label>
     <div class="frow" style="margin-bottom:20px">
-      <input id="fi" type="number" class="inp" placeholder="${s.ph}" value="${v}"
+      <input id="fi" type="number" class="inp" placeholder="${s.ph}" value="${ex(v)}"
              min="1" max="100" oninput="FD['${s.key}']=this.value;sb()">
     </div>
-    <label class="lbl" style="margin-bottom:10px;display:block">
-      Are you an authorized owner for this business?
-    </label>
+    <label class="lbl" style="margin-bottom:10px;display:block">Are you an authorized owner for this business?</label>
     <div class="yn">
       <button id="ynY" class="opt${iao==='Yes'?' sel':''}" onclick="ynPick('Yes')">Yes</button>
-      <button id="ynN" class="opt${iao==='No'?' sel':''}"  onclick="ynPick('No')">No</button>
+      <button id="ynN" class="opt${iao==='No'?' sel':''}" onclick="ynPick('No')">No</button>
     </div>
-    <button class="sbtn" id="nBtn" ${dis} onclick="go()">Continue</button>
+    <button class="sbtn" id="nBtn" ${v&&iao?'':'disabled'} onclick="go()">Continue</button>
   </div>`;
 }
 
-function bAddr(s) {
-  const v  = FD[s.key]       ||'';
-  const ck = FD['useHomeBiz']||false;
-  return `<div class="fw">
+function bAddr(s){
+  const v=FD[s.key]||'',ck=FD['useHomeBiz']||false;
+  return`<div class="fw">
     <label class="lbl">${s.lbl}</label>
     <div class="frow" style="margin-bottom:10px">
-      <input id="fi" type="text" class="inp" placeholder="${s.ph}" value="${v}"
+      <input id="fi" type="text" class="inp" placeholder="${s.ph}" value="${ex(v)}"
              oninput="FD['${s.key}']=this.value;sb()">
     </div>
     <label class="cb">
@@ -649,12 +359,9 @@ function bAddr(s) {
   </div>`;
 }
 
-function bDOB(s) {
-  const m   = FD[s.keys[0]]||'';
-  const d   = FD[s.keys[1]]||'';
-  const y   = FD[s.keys[2]]||'';
-  const dis = m && d && y ? '' : 'disabled';
-  return `<div class="fw">
+function bDOB(s){
+  const m=FD[s.keys[0]]||'',d=FD[s.keys[1]]||'',y=FD[s.keys[2]]||'';
+  return`<div class="fw">
     <div class="dob-grid">
       <div>
         <label class="lbl">Month</label>
@@ -669,3 +376,143 @@ function bDOB(s) {
       <div>
         <label class="lbl">Year</label>
         <input type="text" class="inp tc" placeholder="YYYY" maxlength="4" value="${y}"
+               oninput="FD['${s.keys[2]}']=this.value;sb()">
+      </div>
+    </div>
+    <button class="sbtn" id="nBtn" ${m&&d&&y?'':'disabled'} onclick="go()">Next</button>
+  </div>`;
+}
+
+function bSSN(s){
+  const v=FD[s.key]||'';
+  return`<div class="fw">
+    <label class="lbl">${s.lbl}</label>
+    <div class="frow">
+      <input id="fi" type="password" class="inp pe" placeholder="${s.ph}" value="${ex(v)}"
+             oninput="FD['${s.key}']=this.value;sb()">
+      <button class="eye" onclick="togglePwd()" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+    </div>
+    <button class="sbtn" id="nBtn" ${v?'':'disabled'} onclick="go()">Next</button>
+    <p class="note" style="max-width:430px;margin:16px auto 0">
+      By clicking Next, you acknowledge that you are agreeing to be bound by our 
+      <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>. Additionally, you agree to our 
+      <a href="#">Credit Information Authorization</a> and <a href="#">Consent to Receive Electronic Documents</a>. 
+      As part of our services, SSBV LLC (BusinessLoans.com), network partners, or authorized third parties may 
+      look at your credit report. This is not a hard credit check, will not register as an inquiry, and will not 
+      adversely affect your credit.
+    </p>
+  </div>`;
+}
+
+function bBadges(){
+  const star=`<div class="tp-star"><svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>`;
+  return`<div class="badges">
+    <div class="bbb-box">
+      <div class="bbb-hdr">ACCREDITED</div>
+      <div class="bbb-hdr">BUSINESS</div>
+      <div class="bbb-logo">BBB</div>
+      <div class="bbb-sub">Rating: A</div>
+    </div>
+    <div class="tp-wrap">
+      <div class="tp-exc">Excellent</div>
+      <div class="tp-stars">${star.repeat(5)}</div>
+      <div class="tp-score"><span class="tp-dot"></span> 4.8 score on Trustpilot</div>
+    </div>
+  </div>`;
+}
+
+function bLegal(){
+  return`<div class="legal">
+    <p>By clicking on the "Next" button above, I consent, acknowledge, and agree to the following:</p>
+    <ul>
+      <li>Our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> and to receive important notices, and other communications electronically.</li>
+      <li>You are providing express written consent to share your information with up to five (5) <a href="#">network partners</a>, and for SSBV LLC (BusinessLoans.com), parties calling on behalf of SSBV LLC (BusinessLoans.com), <a href="#">network partners</a>, or an authorized third party on their behalf to call you (including through automated means; e.g. autodialing, text and pre-recorded messaging) via telephone, mobile device (including SMS and MMS - charges may apply) and/or email, even if your telephone number is currently listed on any internal, corporate, state, federal or national Do-Not-Call (DNC) list.</li>
+      <li>Consent is not required as a condition to utilize SSBV LLC (BusinessLoans.com) services, and you may choose to be contacted by an individual customer care representative by calling (844) 585-0656</li>
+      <li>SSBV LLC's (BusinessLoans.com) <a href="#">network partners</a> will contact you directly to discuss your loan options as well as to obtain additional financial information in relationship to your offer of credit you receive from them.</li>
+      <li>I am directing SSBV LLC (BusinessLoans.com) to share my information to the providers in its network for the purpose of providing me with information about their financial services and products.</li>
+    </ul>
+  </div>`;
+}
+
+/* ── HELPERS ── */
+function sb(){
+  const btn=document.getElementById('nBtn');
+  if(!btn) return;
+  const s=STEPS[CUR];
+  let ok=false;
+  switch(s.type){
+    case'curr': case'txt': case'addr':
+      ok=!!(FD[s.key]&&String(FD[s.key]).trim()); break;
+    case'name':
+      ok=!!(FD[s.keys[0]]&&FD[s.keys[0]].trim()&&FD[s.keys[1]]&&FD[s.keys[1]].trim()); break;
+    case'own':
+      ok=!!(FD[s.key]&&FD['isOwner']); break;
+    case'dob':
+      ok=!!(FD[s.keys[0]]&&FD[s.keys[1]]&&FD[s.keys[2]]); break;
+    case'ssn':
+      ok=!!(FD[s.key]&&FD[s.key].replace(/\D/g,'').length>=9); break;
+  }
+  btn.disabled=!ok;
+}
+
+function pickOpt(el,advance){
+  const k=el.dataset.k,v=el.dataset.v;
+  FD[k]=v;
+  document.querySelectorAll(`[data-k="${k}"]`).forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  if(advance) setTimeout(()=>go(),220);
+}
+
+function ynPick(val){
+  FD['isOwner']=val;
+  const y=document.getElementById('ynY'),n=document.getElementById('ynN');
+  if(y) y.classList.toggle('sel',val==='Yes');
+  if(n) n.classList.toggle('sel',val==='No');
+  sb();
+}
+
+function togglePwd(){
+  const fi=document.getElementById('fi');
+  if(fi) fi.type=fi.type==='password'?'text':'password';
+}
+
+function go(){
+  if(CUR<STEPS.length-1){
+    CUR++;
+    renderNav();
+    renderStep();
+    window.scrollTo({top:0,behavior:'smooth'});
+  } else {
+    showSuccess();
+  }
+}
+
+function showSuccess(){
+  document.getElementById('navEl').innerHTML=SECS.map(name=>
+    `<div class="nav-step completed"><span class="chk">✓ </span><span class="step-name">${name}</span></div>`
+  ).join('');
+  document.getElementById('pageEl').innerHTML=`
+    <div class="success-page">
+      <div style="font-size:64px;margin-bottom:20px">🎉</div>
+      <h1 class="q-title">Application Submitted!</h1>
+      <p class="q-sub" style="margin-top:20px;font-size:17px">
+        Thank you! We're matching you with lenders now.<br>Check your email for next steps.
+      </p>
+    </div>`;
+}
+
+function openM(){document.getElementById('ovlEl').classList.add('on');}
+function closeM(){document.getElementById('ovlEl').classList.remove('on');}
+function ovlClick(e){if(e.target===document.getElementById('ovlEl'))closeM();}
+
+/* ── INIT ── */
+renderNav();
+renderStep();
+</script>
+</body>
+</html>
